@@ -1,0 +1,5 @@
+{
+  "test_sample.py::test_add": true,
+  "test_sample.py::test_func": true,
+  "test_sample.py::test_smallest_factor": true
+}
