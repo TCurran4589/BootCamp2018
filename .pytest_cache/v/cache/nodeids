@@ -1,0 +1,14 @@
+[
+  "Assignments/Computation/Week1/test_sample.py::test_func",
+  "Assignments/Math/Foundations of Applied Mathematics/PythonEssentials-Student-Materials/UnitTesting/test_specs.py::test_add",
+  "Assignments/Math/Foundations of Applied Mathematics/PythonEssentials-Student-Materials/UnitTesting/test_specs.py::test_divide",
+  "Assignments/Math/Foundations of Applied Mathematics/PythonEssentials-Student-Materials/UnitTesting/test_specs.py::test_fraction_init",
+  "Assignments/Math/Foundations of Applied Mathematics/PythonEssentials-Student-Materials/UnitTesting/test_specs.py::test_fraction_str",
+  "Assignments/Math/Foundations of Applied Mathematics/PythonEssentials-Student-Materials/UnitTesting/test_specs.py::test_fraction_float",
+  "Assignments/Math/Foundations of Applied Mathematics/PythonEssentials-Student-Materials/UnitTesting/test_specs.py::test_fraction_eq",
+  "Computation/Wk1_PyIntro/test_solutions.py::test_addition",
+  "Computation/Wk1_PyIntro/test_solutions.py::test_smallest_factor",
+  "Computation/Wk1_PyIntro/test_solutions.py::test_operator",
+  "Computation/Wk1_PyIntro/test_solutions.py::test_complex_addition",
+  "Computation/Wk1_PyIntro/test_solutions.py::test_complex_multiplication"
+]

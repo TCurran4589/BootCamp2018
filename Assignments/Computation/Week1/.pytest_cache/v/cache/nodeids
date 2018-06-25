@@ -1,0 +1,6 @@
+[
+  "test_sample.py::test_corrected_smallest_factor",
+  "test_sample.py::test_month_length",
+  "test_sample.py::test_divide",
+  "test_sample.py::test_operate"
+]

@@ -1,0 +1,114 @@
+\documentclass{article}
+\title{Economics Problem Set 1}
+\author{Tom Curran}
+\begin{document}
+\maketitle{}
+\section{Exercise 1}
+
+\subsection{State Variables}
+
+The state variable(s) are those variables that represent the state of the system, in other words, its what you need to know to make a decision. In this model, the state variable is $B$ - the number of barrels of oil the owner has, and $p$ - the price per barrel of oil.
+
+\
+
+\underline{state variable}: $B$, $p$
+
+\subsection{Control Variables}
+The control variables are `what is chosen'. In this case, the chosen variable (control) is the amount of oil that is extracted each period ($T$), here represented by the variable $c$
+
+\
+
+\underline{control variable}: $c$
+
+\subsection{Transition Equation}
+The transition is the equation describing the evolution of the state variable, or describes the state variable tomorrow as a function of the state variable today and the given control variable. Here, we use $c$ as the variable for consumption - or difference between the initial amount and the amount sold
+
+\
+
+\underline{transition equation}: $B^\prime = B - c_t$
+
+\subsection{Sequence \& Bellman Equations}
+
+\begin{itemize}
+
+\item First, we assume that this is a infinite horizon problem
+
+\item we also assume that there is no \underline{storeage technology}, meaning that the staring value of $B$ does not increase over time
+
+\item The owner discounts the rate at $\frac{1}{1+\gamma}$, which we will define as $\beta  = \frac{1}{1+\gamma}$
+
+\item $c_T$ is the consumption of oil in period $T$, or how much oil sold in given period
+
+\item \underline{Sequence Problem}:
+
+\[V(B) = \max_{c_1,...,c_T}\Sigma_{t=1}^\infty \beta^t c_t p_t \]
+
+\[s.t. \ \Sigma_{t=1}^\infty c_t = B\]
+
+in other words, the the value of the Barrels of oil $B$ is maximized over the sum of price and consumption at time t discounted by $\beta$ such that the total consumption equals the total barrels of oil (initial value), which makes sense because we 1) assumed there is no additional oil at any given period after 0 and 2) that you can't sell more than the total amount available to you.
+
+\item \underline{Bellman Eqution}:
+
+\[ V(B) = max\{ u(B-B^\prime) + \beta V(B^\prime) \} \]
+
+\end{itemize}
+
+\subsection{Euler Equation}
+
+\underline{Euler Euqation}:
+
+\[u^\prime(B-B^\prime) = \beta V^\prime(B^\prime) \]
+
+
+\subsection{}
+
+\begin{itemize}
+
+\item If $p_{t+1} = p_t$ then all the oil would be sold in the first period since every additional period would be discounted, and thus a lower value would be yielded.
+
+\item If $p_{t+1}>(1+ r)p$ then the price that the oil could be sold for would be strictly greater in the following period. Given that we want to maximize the value of the oil we would always wait until the next period ad infinum because it would be higher than the current price, thus never actually selling the oil.
+
+\item The condition on prices necessary for an interior solution (i.e. where the owner will not sell all of their oil in a given period) is that the price must yield the same marginial utility in the initial period as in the following period.
+
+\end{itemize}
+
+\section{Exercise 2}
+
+\
+
+\underline{Resource Constraint}: $y_t = c_t + i_t$
+
+\
+
+\underline{Law of Motion}: $k_{t+1} = (1-\delta)k_t + i_t$
+
+\
+
+\underline{Production Function}: $y_t = z_tk_t^\alpha$
+
+\
+
+\underline{Neoclassical Growth Model}:
+
+\[ \max_{\{c\}_{t=0}^\infty} E_0 \Sigma_{t=0}^\infty \beta u(c_t)\]
+\[ s.t. \ c_t + k_{t+1} = z_tk_t^\alpha\]
+
+
+\subsection{State Variables}
+
+\underline{State Variables}: $k_t$, $z_t$
+
+\subsection{Control Variables}
+
+\underline{Control Variables}: $c_t$,$k_{t+1}$
+
+\subsection{Bellman Equation}
+
+\[ V_2(k_t, z_t) = \max_{c_t, k_{t+1}} u(c_t) + \beta E_tV(k_{t+1},z_{t+1}) \]
+
+\section{Exercise 3}
+
+
+\section{Exercise 4}
+
+\end{document}

@@ -1,0 +1,122 @@
+\documentclass{article}
+\usepackage{calligra}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+
+\title{Math Homework Week 1}
+\author{Tom Curran}
+\begin{document}
+\maketitle{}
+\section{Measure Spaces}
+
+\subsection{Problem 1.3}
+\begin{itemize}
+
+\item$\mathcal{G}_1 = \{A, A \subset \mathbb{R}, A \ open \}$
+
+\begin{itemize}
+\item if A is an open set on $(-\infty, 0)$ than its complement is $[0, \infty)$
+\item According to the definition of a alegebra, A is an $\mathcal{A}$ or $\mathcal{S}$ if it's complement is a closed set. And since $A^c$ is only half closed, $\mathcal{G}_1$ cannot be an algebra
+\end{itemize}
+
+\item$\mathcal{G}_2$ = $\{$ A, A is a finite union of intervals of the form $(a,b], (-\infty, b], and (a,\infty) $\}
+
+\begin{itemize}
+  \item if $A = \cup_{i=1}^n (a_i, b_i] $ where $-\infty \leq a_i \leq b_i \leq \infty$ then
+  \item then $A^c = (-\infty,a_i] \cup \bigcup_{i=1}^{n-1}(b_o,a_{i+1}] \cup (b_n, \infty)) $
+  \item given the complement, the function $\mathcal{G}_2$ is an algebra since it goes on indefinitely on both ends and is closed
+\end{itemize}
+\item$\mathcal{G}_3$ = $\{$ A, A is a countable union of $(a,b], (-\infty, b], and (a,\infty) $\}
+  \begin{itemize}
+
+  \item $\mathcal{G}_3$ is a $\sigma$-algebra
+
+  \end{itemize}
+
+\end{itemize}
+
+
+\subsection{Exercise 1.7}
+\
+Explain why these are the ’largest’ and ’smallest’ possible $\sigma$-algebras, respectively, in the following sense: if A is any $\sigma$-algebra, then $\{\emptyset, A\} \subset \mathcal{A} \subset \mathcal{P}(X)$.
+
+\begin{itemize}
+
+\item $\{\emptyset, X \}$: this is the smallest algebra $\sigma$-algebra since it contains an empty set and a non-empty set (the empty set's complement
+\item $\mathcal{P}(X)$: the Power Set is all subsets of $\mathcal{X}$ including the empty set making $\mathcal{A} \subset \mathcal{P}(X)$ mechanically larger than $\{\emptyset, X\}$
+
+\end{itemize}
+
+\subsection{Exercise 1.10}
+
+\
+
+\underline{Prove the following Proposition}:
+
+\
+
+Let $\{\mathcal{S}_\sigma\}$ be a family of $\sigma$-algebras on X. Then $\cap_\sigma \mathcal{S}_\sigma$ is also a $\sigma$-algebra.
+
+\
+
+Since each set is a $\sigma$-algebra, there must be a set of empty sets, which satisifies the first condition of a an algebra.
+
+\subsection{Exercise 1.17}
+
+\
+
+Let ($X, \mathcal{S}, \mu$) be a measure space. Prove the following:
+
+\begin{itemize}
+
+\item $\mu$ is monotone: if $A, B \in \mathcal{S}$ then $\mu(A) \leq \mu(B)$
+\item $\mu$ is countably subadditive: if $\{A_i\}_{i=1}^\infty$ then $\mu(\cup_{i=1}^\infty A_i) \leq \Sigma_{i=1}^\infty \mu(A)$
+
+\end{itemize}
+
+\subsection{Exercise 1.18}
+
+Let ($X, \mathcal{S} \mu$) be a measure space. Let $B \in \mathcal{S}$. Show that $ \lambda \: \mathcal{S} \rightarrow [0, \infty]$ defined by $\lambda(A) = \mu(A \cap B)$ is also a measure of $(X, \mathcal{S})$
+
+\subsection{Exercise 1.20}
+
+\
+
+Prove (ii)
+
+\section{Construction of Lebesgue Measure}
+
+\
+
+
+\subsection{Exercise 2.10}
+
+\subsection{Exercise 2.14}
+
+\section{Measureable Functions}
+
+\subsection{Exercise 3.1}
+\subsection{Exercise 3.4}
+\subsection{Exercise 3.7}
+\subsection{Exercise 3.14}
+
+\section{Lebesque Integration}
+\subsection{Exercise 4.14}
+
+\subsection{Exercise 4.15}
+
+\subsection{Exercise 4.17}
+
+\subsection{Exercise 4.21}
+\end{document}
