@@ -40,11 +40,7 @@ In this context, A2 = AA (the matrix product, not the component-wise square). Th
 somewhat surprising result is a demonstration of the Cayley-Hamilton theorem
 '''
 
-a2 = np.array([
-    [3,1,4],
-    [1,5,9],
-    [-5,3,1]
-])
+a2 = np.array([[3,1,4],[1,5,9],[-5,3,1]])
 
 ans = (-1 * a2 * 3) + (9*a2*2) -(15*a2)
 
@@ -107,30 +103,26 @@ x = np.array([-1, 3,5, -10, 6])
 problem4(x)
 
 
-'''
-
-Problem 5
-
-
-FINISH
-'''
-
-
 a5 = np.arange(6).reshape(2,3)
 
 b5 = np.zeros((3,3), dtype = "int64")
-print(a5)
-
 b5_bottom = np.tril_indices(3)
 b5[b5_bottom] = 3
-print(b5)
 
 c5 = np.zeros((3,3))
 np.fill_diagonal(c5, -2)
-print(c5)
+
 def problem5(a,b,c):
     a = a.T
+    zero_m = np.zeros(a.shape)
+    I = np.identity(3, dtype = "int")
+    matrix_row1 = [zero_m, a, I]
+    matrix_row2 = [a, zero_m, zero_m]
+    matrix_row3 = [b,zero_m, c]
+    matrix = [matrix_row1, matrix_row2, matrix_row3]
+    return(matrix)
 
+problem5(a5,b5,c5)
 
 '''
 Problem 6. A matrix is called row-stochastica

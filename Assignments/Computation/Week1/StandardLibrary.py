@@ -33,7 +33,43 @@ Otherwise, the names refer to different objects—meaning a copy was made in ste
 therefore the object type is immutable.
 
 '''
+#answer: immutable
+int_1 = 10
+int_2 = int_1
+int_2 += 5
+int_2 == int_1
 
+#answer: immutable
+str_1 = "hello"
+str_2 = str_1
+str_2 *= 5
+str_2 == str_1
+
+#answer: mutable
+list_1 = [1,2,3]
+list_1
+list_2 = list_1
+list_2
+list_2 += [4,5,6]
+list_2 == list_1
+list_2
+list_1
+
+#answer: immutable
+tuple_1 = (1,2,3,4,5)
+tuple_2 = tuple_1
+tuple_2 += (1,)
+tuple_2 == tuple_1
+tuple_2
+
+#answer: mutable
+set_1 = (["a","b","c"])
+set_2 = set_1
+set_2 += ([1,2,3])
+set_2 == set_1
+
+set_2
+set_1
 '''
 
 Create a module called calculator.py. Write a function that returns the sum
@@ -47,25 +83,39 @@ numbers representing the lengths of the sides of a right triangle. Using only th
 calculator.py, calculate and return the length of the hypotenuse of the triangle.
 
 '''
-
-import calculator
+import calc
 from math import sqrt
+#a^2 + b^2 = c^2
 
+a2 = calc.products(2,2)
+b2 = calc.products(3,3)
 
-# calculator is importing but its not finding any of the functions
-
-'''
-
-Problem 4. The power set of a set A, denoted P(A) or 2
-A, is the set of all subsets of A,
-including the empty set ∅ and A itself. For example, the power set of the set A = {a, b, c} is
-2
-A = {∅, {a}, {b}, {c}, {a, b}, {a, c}, {b, c}, {a, b, c}}.
-Write a function that accepts an iterable A. Use an itertools function to compute the
-power set of A as a list of sets (why couldn’t it be a set of sets in Python?).
+c = sqrt(calc.addition(a2, b2))
+print(c)
 
 '''
 
+Problem 4.
+The power set of a set A, denoted P(A) or 2^A, is the set of all subsets of A,
+including the empty set ∅ and A itself. For example, the power set of the set
+A = {a, b, c} is 2^A = {∅, {a}, {b}, {c}, {a, b}, {a, c}, {b, c}, {a, b, c}}.
+
+Write a function that accepts an iterable A. Use an itertools function to compute
+the power set of A as a list of sets (why couldn’t it be a set of sets in Python?).
+
+'''
+
+from itertools import chain, cycle, combinations, permutations
+
+A = ["a","b","c"]
+
+def powerset(iterable):
+    s = list(iterable)
+    p_set = chain.from_iterable(combinations(s,r) for r in range(len(s)+1))
+    return(list(p_set))
+
+
+print(powerset(A))
 '''
 Problem 5.
 
@@ -117,3 +167,52 @@ inputs from the user.
 #
 #
 ###############################################################################
+
+import box
+import random
+import numpy as np
+
+def ShutTheBox():
+
+
+    name = input("Name? ")
+
+    time_limit = int(input("Time Limit? "))
+
+    initial_list = list(range(1,10))
+
+    assert isinstance(time_limit,(int, float)), "Time Limit is not a number"
+
+    assert isinstance(name, (str)), "Name is not a string"
+
+    def remove_nums(number_list):
+        print("Numbers Left: {}".format(number_list))
+        roll = random.randint(1,6) + random.randint(1,6)
+        print("Roll: {}".format(roll))
+        #print("Seconds Left: {}".format(time_limit))
+
+        choices = [int(x) for x in input("Which Numbers would you like to eliminate? ").split()]
+
+        while np.sum(choices) != roll:
+            print("Those numbers do not add up to your roll")
+            choices = [int(x) for x in input("Which Numbers would you like to eliminate? ").split()]
+        else:
+            remaining = set(initial_list) - set(choices)
+
+        new_roll = random.randint(1,6) + random.randint(1,6)
+
+        return(remaining, new_roll)
+
+
+
+    numbers_left, roll2 = remove_nums(initial_list)
+
+    while box.isvalid(roll2, numbers_left):
+        numbers_left, roll2 = remove_nums(numbers_left)
+#box.isvalid(roll, initial_list)
+#    while box.isvalid(roll, initial_list):
+
+
+
+
+ShutTheBox()

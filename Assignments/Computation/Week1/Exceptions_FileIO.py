@@ -142,11 +142,6 @@ class ContentFilter:
         else:
             raise ValueError("check unit argument, must be either 'line' (default) or 'word'")
 
-    def transpose(self):
-        
-
-
-
 works = ContentFilter("test.txt")
 
 
