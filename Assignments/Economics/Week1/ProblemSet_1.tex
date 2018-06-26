@@ -108,7 +108,37 @@ in other words, the the value of the Barrels of oil $B$ is maximized over the su
 
 \section{Exercise 3}
 
+\subsection{\underline{Bellman Equation}}
+
+
+\[ V(k_t, z_t) = \max \{ u(c_0) + \beta E_{z_{t+1} | z_t} V(k_{t+1}, z_{t+1}) \} \]
+
+
+\subsection{\underline{State Variables}}
+\begin{itemize}
+  \item $k_t, \ z_t $
+\end{itemize}
+
+\subsection{\underline{Control Variables}}
+  \begin{itemize}
+    \item $c_t , \ k_{t+1} $
+  \end{itemize}
+
+\subsection{Solving Growth Model For VFI}
+
+see python file.
 
 \section{Exercise 4}
+\subsection{\underline{Bellman Equation}}
+
+\[ V(w,\epsilon) = max\{V^0(w,\epsilon), V^1(w,\epsilon)\}\]
+
+\[s.t. \ V^0(w,\epsilon) = \beta E_{\epsilon^\prime | \epsilon} V(\rho w, \epsilon)\]
+
+\[and \ V^1(w,\epsilon) = \epsilon u(w)\]
+
+\subsection{}
+
+see python file
 
 \end{document}
