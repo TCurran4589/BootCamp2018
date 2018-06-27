@@ -171,48 +171,16 @@ inputs from the user.
 import box
 import random
 import numpy as np
+import time
+import sys
 
-def ShutTheBox():
-
-
-    name = input("Name? ")
-
-    time_limit = int(input("Time Limit? "))
+def game():
+    name = input("What is your name? ")
+    time = float(input("Time Limit?"))
 
     initial_list = list(range(1,10))
-
-    assert isinstance(time_limit,(int, float)), "Time Limit is not a number"
-
-    assert isinstance(name, (str)), "Name is not a string"
-
-    def remove_nums(number_list):
-        print("Numbers Left: {}".format(number_list))
-        roll = random.randint(1,6) + random.randint(1,6)
-        print("Roll: {}".format(roll))
-        #print("Seconds Left: {}".format(time_limit))
-
-        choices = [int(x) for x in input("Which Numbers would you like to eliminate? ").split()]
-
-        while np.sum(choices) != roll:
-            print("Those numbers do not add up to your roll")
-            choices = [int(x) for x in input("Which Numbers would you like to eliminate? ").split()]
-        else:
-            remaining = set(initial_list) - set(choices)
-
-        new_roll = random.randint(1,6) + random.randint(1,6)
-
-        return(remaining, new_roll)
+    while
 
 
 
-    numbers_left, roll2 = remove_nums(initial_list)
-
-    while box.isvalid(roll2, numbers_left):
-        numbers_left, roll2 = remove_nums(numbers_left)
-#box.isvalid(roll, initial_list)
-#    while box.isvalid(roll, initial_list):
-
-
-
-
-ShutTheBox()
+game()
