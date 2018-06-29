@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{Math Homework Week 2}
+\author{Tom Curran}
+\begin{document}
+\maketitle{}
+\section{}
+
+\underline{3.1}
+
+\[ \| v \cdot w \| ^2 = \langle v + w, w+v \rangle \]
+
+\begin{equation} \label{eq1}
+  \begin{split}
+  \| v \cdot w \|^2 & = \langle v + w, w+v \rangle \\
+  & = \langle v,w \rangle + \langle w,v \rangle + \langle v,v \rangle + \langle w,w \rangle \\
+  & = \| v \|^2 + \| w \|^2 + \langle w,v \rangle + \overline{\langle v,w \rangle} \\
+  & = \| v \|^2 + \| w \|^2 + 2 \mathbb{R}( \langle w,v \rangle )
+ \end{split}
+\end{equation}
+
+\[\| v \cdot w \|^2 - \|w\|^2 - \|v\|^2 = 2 \mathbb{R}( \langle w,v \rangle ) \]
+
+\[ \mathbb{R}( \langle w,v \rangle ) = \frac{1}{2} (\| v \cdot w \|^2 - \|w\|^2 - \|v\|^2) \]
+
+\end{document}
