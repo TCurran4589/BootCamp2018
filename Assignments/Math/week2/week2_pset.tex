@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\title{Math Homework Week 2}
+\title{Math Homeyork yeek 2}
 \author{Tom Curran}
 \begin{document}
 \maketitle{}
@@ -9,19 +9,101 @@
 
 \underline{3.1}
 
-\[ \| v \cdot w \| ^2 = \langle v + w, w+v \rangle \]
-
 \begin{equation} \label{eq1}
   \begin{split}
-  \| v \cdot w \|^2 & = \langle v + w, w+v \rangle \\
-  & = \langle v,w \rangle + \langle w,v \rangle + \langle v,v \rangle + \langle w,w \rangle \\
-  & = \| v \|^2 + \| w \|^2 + \langle w,v \rangle + \overline{\langle v,w \rangle} \\
-  & = \| v \|^2 + \| w \|^2 + 2 \mathbb{R}( \langle w,v \rangle )
+  \| x+ y \|^2 & = \langle x+ y, y+x\rangle \\
+  & = \langle x,y \rangle + \langle y,x\rangle + \langle x,x\rangle + \langle y,y \rangle \\
+  & = \| x\|^2 + \| y \|^2 + \langle y,x\rangle + \overline{\langle x,y \rangle} \\
+  & = \| x\|^2 + \| y \|^2 + 2( \langle y,x\rangle )\\
+  \langle y,x\rangle = \frac{1}{2}( - \| x\|^2 - \| y \|^2  \| x + y \|^2)
  \end{split}
+\end{equation}\label{eq1}
+
+\begin{equation} \label{eq2}
+  \begin{split}
+  \| x - y \|^2 & = \langle x - y, y - x\rangle \\
+  & = \langle x,y \rangle + \langle y,x\rangle - \langle x,x\rangle + \langle y,y \rangle \\
+  & = \| x\|^2 + \| y \|^2 -\langle y,x\rangle + \overline{\langle x,y \rangle} \\
+  & = \| x\|^2 + \| y \|^2 - 2( \langle y,x\rangle ) \\
+  \langle y,x\rangle = \frac{1}{2}(\| x\|^2 + \| y \|^2 - \| x-y \|^2)
+ \end{split}
+\end{equation}\label{eq2}
+
+combining equations 1 and 2 from above we get
+
+\[ \langle y,x\rangle =  \frac{1}{4} (\| x+ y \|^2 - \| x - y \|^2) \]
+
+\underline{3.2}
+
+\begin{equation} \label{eq3}
+  \begin{split}
+  \| x + i y \|^2 & = \langle x+ iy, iy+x\rangle \\
+  & = \langle x,iy \rangle + \langle iy,x\rangle + \langle x,x\rangle + \langle iy,iy \rangle \\
+  & = \| x\|^2 + \| iy \|^2 + \langle iy,x\rangle + \overline{\langle x,iy \rangle} \\
+  & = \| x\|^2 + \| iy \|^2 + 2( \langle iy,x\rangle )\\
+  \langle y,x\rangle = \frac{1}{2}( - \| x\|^2 - \| iy \|^2  \| x + i y \|^2)
+ \end{split}
+\end{equation}\label{eq3}
+
+\begin{equation} \label{eq4}
+  \begin{split}
+  \| x - iy \|^2 & = \langle x - iy, iy - x\rangle \\
+  & = \langle x,iy \rangle + \langle iy,x\rangle - \langle x,x\rangle + \langle iy,iy \rangle \\
+  & = \| x\|^2 + \| iy \|^2 -\langle iy,x\rangle + \overline{\langle x,iy \rangle} \\
+  & = \| x\|^2 + \| iy \|^2 - 2( \langle iy,x\rangle ) \\
+  \langle y,x\rangle = \frac{1}{2}(\| x\|^2 + \| iy \|^2 - \| x-iy \|^2)
+ \end{split}
+\end{equation}\label{eq4}
+
+combining equations 3 and four give:
+
+\[ \langle y,x\rangle =  \frac{1}{4} (i\| x + y \|^2 - i \| x - y \|^2) \]
+
+combining with equations 1 and 2 we get:
+
+\[ \langle y,x\rangle =\frac{1}{4} (\| x+ y \|^2 - \| x - y \|^2  + i\| x + iy \|^2 - i \| x - iy \|^2) \]
+
+
+\underline{3.3}
+
+\
+
+$\cos\theta =\frac{\langle x,y \rangle}{ \| x\| \|y\|} $
+
+\begin{equation}
+  \begin{split}
+  \langle f,f \rangle & = \sqrt{\langle f * f \rangle}\\
+  & = \sqrt{\int_{0}^{1} f(x)f(x) dx}\\
+  & = \sqrt{\int_{0}^{1} x * x dx}\\
+  & = \sqrt{\frac{1}{3} - 0}\\
+  & = \sqrt{\frac{1}{3}}\\
+  & = \| f \|\\
+  \end{split}
 \end{equation}
 
-\[\| v \cdot w \|^2 - \|w\|^2 - \|v\|^2 = 2 \mathbb{R}( \langle w,v \rangle ) \]
+\begin{equation}
+  \begin{split}
+  \langle f,f \rangle & = \sqrt{\langle f * f \rangle}\\
+  & = \sqrt{\int_{0}^{1} f(x)f(x) dx}\\
+  & = \sqrt{\int_{0}^{1} x^{5} * x^{5} dx}\\
+  & = \sqrt{\frac{1}{11} - 0}\\
+  & = \sqrt{\frac{1}{11}} \\
+  & = \| g \|
+  \end{split}
+\end{equation}
+\end{document}
 
-\[ \mathbb{R}( \langle w,v \rangle ) = \frac{1}{2} (\| v \cdot w \|^2 - \|w\|^2 - \|v\|^2) \]
+\begin{equation}
+  \begin{split}
+  \langle f \cdot g \rangle & = x * x^5
+  & = x^6
+  \end{split}
+\end{equation}
 
+\begin{equation}
+  \begin{split}
+  \cos\theta & = \frac{\lange f \cdor \g \rangle}{\| f \| \  \|g\|}
+  & = \frac{x^5}{\sqrt{\frac{1}{1}} \ \sqrt{\frac{1}{3}}}
+  \end{split}
+\end{equation}
 \end{document}
