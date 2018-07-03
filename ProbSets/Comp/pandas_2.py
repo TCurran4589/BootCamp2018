@@ -26,15 +26,12 @@ plt.scatter(x = trees.Volume, y = trees.Girth)
 plt.title("Tree Volume vs Girth")
 plt.xlabel("Volume")
 plt.ylabel("Girth")
+plt.text(r"it appears that of the characteristics measured on the data set \n \
+         that girth and Volume are the most highly correlated. Which makes sense since \n \
+         girth, or width, is a characteristics of volume", fontsize = 15)
 
 plt.show()
 
-'''
-
-it appeasr that of the characteristics measured on the data set, that girth and Volume
-are the most highly correlated. Which makes sense since girth, or width, is a characteristic
-of volume
-
-'''
-
 #Data set #2
+bdr = data("birthdeathrates")
+bdr.info()
