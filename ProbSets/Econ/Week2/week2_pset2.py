@@ -46,7 +46,6 @@ plt.ylabel("Density")
 plt.xlabel("X Value [0,1]")
 plt.show()
 
-
 kde2 = kde(dist_2)
 kde_est2 = kde2.estimator(x_dist)
 plt.plot(x_dist, kde2.estimator(x_dist), label = "Estimated Probability")
@@ -110,3 +109,22 @@ plt.title("Kernal Density Estimation Simulation" )
 plt.ylabel("Density")
 plt.legend()
 plt.show()
+
+
+#Question 3:
+
+import textwrap
+
+q3 = '''
+        If the spectral radius of A is less than 1 then it must also be true that A to the power of k goes to zero (0)
+
+        Gelfand's formula states that the norm of A raised to the inverse of k converges on the real spectral radius of the matrix A self.
+
+        Using Gelfand's formula, if the spectral radius of matrix A is less than 1, k must be some number greater than 1self.
+
+        As k becomes larger, the inverse power that the matrix A is raised to induces smaller and smaller valuesself.
+
+        Therefore, as A approaches infinity, we can see that the spectral radius of A is continunally shrinking to zero
+'''
+
+print(textwrap.dedent(q3))

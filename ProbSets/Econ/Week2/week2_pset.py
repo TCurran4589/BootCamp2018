@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import scipy.linalg as sc
 import matplotlib.pyplot as plt
-from numba import jit
+from numba import jit, njit
 
 # Read it in and compute the spectral raduis using the tools for working with eigenvalues in scipy.linalg.
 
@@ -80,18 +80,29 @@ Try to make your code efficient.
 '''
 ###############################################################################
 
-#Draws a random set of x's between 0-1
-x_0 = np.random.uniform(0,1, 100)
+x_init = np.random.uniform(0,1,100)
 
-#quadratic map: 4 x_i * (1 - x_i) = x_i+1
-quadMap = []
-for i in range(0, len(x_0)):
-    x = x_0[i]
-    x_t = 4*x*(1-x)
-    quadMap.append(x_t)
+@jit
+def quadraticMap(x0,N):
+    y = np.zeros((len(x0),N))
+    i = 0
+    for x in x_0:
+        x_t = np.zeros(100)
+        x_t[0] = x
+        res[i][0] = x
+        for n in range(1,N):
+            y[i][n] = 4* y[i][n-1]*(1- y[i][n-1])
+        i+=1
+    return res
 
-plt.hist(quadMap)
+y = quadraticMap(x_init,10000)
 
+
+plt.figure(figsize=(10, 10))
+for p in range(0, len(y)):
+    subplot = plt.subplot(10,10, p+1)
+    plt.hist(y[p])
+plt.show()
 
 ###############################################################################
 # Excercise #2

@@ -62,16 +62,18 @@ You can make use of the simulate method in MarkovChain.
 ###############################################################################
 
 simulation = qe.MarkovChain(P).simulate_indices(ts_length = 1000, random_state = 1234)
-
+'''
 state = np.zeros(len(P[0]))
 
 for i in range(0, len(state)):
     states = simulation == i
-    state[i] = np.sum(states)/1000
+    state[i] = np.sum(states)
+'''
 
+state_count = pd.Series(simulation).value_counts()/1000
 
-plt.plot(list(range(0, len(P[0]))), state, color = 'g', label = 'Simulation')
-plt.scatter(list(range(0, len(P[0]))),state, color = 'g')
+plt.plot(list(range(0, len(P[0]))), state_count, color = 'g', label = 'Simulation')
+plt.scatter(list(range(0, len(P[0]))),state_count, color = 'g')
 plt.plot(list(range(0, len(P[0]))),stationary_dist_p[0],  ':',color = 'r', label = 'Actual')
 plt.scatter(list(range(0, len(P[0]))),stationary_dist_p[0],color = 'r')
 plt.title(r"Simulation vs Actual Stationary Distributions of $P$")
@@ -89,7 +91,7 @@ plt.show()
 '''
 Exercise 3
 Ergodicity also implies that, if we simulate a large number of paths and then
-look at the cross section at some $T$, where $T$ is suitably large, then the 
+look at the cross section at some $T$, where $T$ is suitably large, then the
 empirical distribution should be close to the stationary distribution.
 
 Confirm this by simulation and visual inspection, as above.
@@ -97,4 +99,30 @@ Confirm this by simulation and visual inspection, as above.
 (In this context, the empirical distribution of a sample is the fraction of
 observations that take value $j$ for each $j$ in $0, \ldots, 7$.)
 '''
-###############################################################################
+################################################################################
+
+#simulate a large number of paths:
+paths = np.zeros(1000)
+
+#T is suitably large
+T = 1000
+
+for i in range(len(paths)):
+    T_sim = qe.MarkovChain(P).simulate_indices(ts_length = T)
+    paths[i] = T_sim[-1]
+
+counts = pd.Series(paths).value_counts()/1000
+
+
+plt.figure(figsize = (10,10))
+plt.plot(list(range(0, len(P[0]))), counts, '--', color = 'b', label = 'Ex #3')
+plt.scatter(list(range(0, len(P[0]))),counts, color = 'b')
+plt.plot(list(range(0, len(P[0]))), state_count,':', color = 'g', label = 'Ex #2')
+plt.scatter(list(range(0, len(P[0]))),state_count, color = 'g')
+plt.plot(list(range(0, len(P[0]))),stationary_dist_p[0],  color = 'r', label = 'Ex #1')
+plt.scatter(list(range(0, len(P[0]))),stationary_dist_p[0],color = 'r')
+plt.title(r"Simulation vs Actual Stationary Distributions of $P$")
+plt.ylabel("Probability")
+plt.xlabel("Period")
+plt.legend()
+plt.show()
