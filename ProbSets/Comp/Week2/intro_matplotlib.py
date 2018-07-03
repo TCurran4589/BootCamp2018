@@ -32,7 +32,7 @@ plt.show()
 
 x = np.linspace(-2*np.pi, 2*np.pi)
 sin = np.sin(x)
-tan = np.tan(x)
+tan = np.arctan(x)
 cos = np.cos(x)
 
 plt.ion()
