@@ -79,39 +79,34 @@ sigma = .1
 mu    = -3
 s     = .2
 
+def new_n(mu, sigma, n):
+    X_t = np.random.normal(mu, sigma, n)
+    xi = norm.pdf(0,1, n)
+    X_tp1 = (rho * X_t) + beta + (sigma * xi)
+    kde_x_tp1 = kde(X_tp1)
+    kde_estimator_tp1 = kde_x_tp1.estimator(x)
+    return(kde_estimator_tp1)
+
+
+
 #generate n random draws of X_t from N(y,s2) distribution (i.e. xi distribution)
+X_t = np.random.normal(mu, sigma, n)
+xi = norm.pdf(0,1,n)
+X_tp1 = (rho * X_t) + beta + (sigma * xi)
+x = np.linspace(-4,-1,n)
 
-random_ints = np.random.randint(50,200,5)
+kde_x_tp1 = kde(X_tp1)
+kde_estimator_tp1 = kde_x_tp1.estimator(x)
+x_theoretical = norm.pdf(x, mu, s)
 
-Xt = np.random.normal(mu, s, n)
-
-#generate random shocks
-xi_rand = norm.pdf(0,1,n)
-#Update the draws from the using the rule: rho * X_t + b + sigma * xit+1
-Xt_1 = (rho * Xt) + beta + (sigma * xi_rand)
-
-kde_ar = kde(Xt_1)
-kde_ar_est = kde_ar.estimator(x)
-plt.plot(x, kde_ar_est)
-
-
-def plot_random_n(n, i):
-    xt2 = np.random.normal(mu, s, n)
-    xi_rand2 = norm.pdf(0,1,n)
-    Xt_1_2 = (rho * xt2) + beta + (sigma * xi_rand2)
-    kde_ar2 = kde(xt2)
-    kde_ar_est2 = kde_ar.estimator(x)
-
-    subplot_num = int("22" + str(i))
-    plt.subplot(subplot_num)
-    plt.plot(x,kde_ar_est2 )
-    plt.show()
-[plot_random_n(n = random_ints[i], i = 1) for i in range(0, len(random_ints))]
-for i in range(0, 5):
-    x = "2" + "2" + str(i)
-    print(x)
-
-
-
-#plt.plot(x, norm.pdf(0,1,100))
+plt.plot(x,kde_estimator_tp1, label = r"KDE for $X_{t+1}$, n = 100")
+plt.plot(x, x_theoretical, label = r"Theoretical Distribution")
+plt.plot(x,new_n(mu = -3, sigma = .1, n = 200), label = r"KDE for n = 200" )
+plt.plot(x,new_n(mu = -3, sigma = .1, n = 150), label = r"KDE for n = 150" )
+plt.plot(x,new_n(mu = -3, sigma = .1, n = 50), label = r"KDE for n = 50" )
+plt.plot(x,new_n(mu = -3, sigma = .1, n = 500), label = r"KDE for n = 500" )
+plt.plot(x,new_n(mu = -3, sigma = .1, n = 1000), label = r"KDE for n = 1000" )
+plt.title("Kernal Density Estimation Simulation" )
+plt.ylabel("Density")
+plt.legend()
 plt.show()
