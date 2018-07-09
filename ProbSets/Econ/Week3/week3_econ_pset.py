@@ -17,6 +17,7 @@ def interest(alpha, A, labor, capital, delta) :
     for i in range(0, len(labor))             :
         interest[i] = alpha * A * np.power((labor[i]/capital), (1-alpha)) - delta
     return(interest)
+
 #------------------------------------------------------------------------------#
 
 def capital(bvec_guess, b0 = 0)               :
@@ -43,7 +44,7 @@ def crra(sigma, c)                            :
 
     u_prime = np.power(c, (-1*sigma))
 
-    u_dbprime = -sigma * np.power(x, (-sigma - 1))
+    u_dbprime = -sigma * np.power(c, (-sigma - 1))
     return(u, u_prime, u_dbprime)
 
 #------------------------------------------------------------------------------#
@@ -99,11 +100,10 @@ def feasible(f_params,bvec_guess):
     #Declare problem paramters
     n_periods, sigma, A, alpha, delta, beta = f_params
     b0 = bvec_guess[0]
-    k = capital(bvec_guess, b0)
-    l = labor_supply(n_periods)
+    k = bvec_guess.sum()
+    l = np.array([1,1.2])
     w = wage(alpha, A, k, l)
     r = interest(alpha, A, l, k, delta)
-
     p = production(A, k, alpha, l)
     c = consumptions(w,l, r, bvec_guess)
     #--------------------------------------------------------------------------#
@@ -169,6 +169,7 @@ delta = .6415
 beta = .442
 n_periods = 3
 laborSupply = labor_supply(n_periods)
+SS_tol = 1e-5
 
 f_params = (n_periods, sigma, A, alpha, delta, beta)
 
@@ -217,5 +218,53 @@ print("K constraing: {}".format(k_cnstr3))
 print("B constraint: {}".format(b_cnstr3))
 print("C constraint: {}".format(c_cnstr3))
 print("No constraints are violated")
+################################################################################
+#
+#                                  #Question 2
+#
+################################################################################
 
-properties1
+def euler_errors(bvec_gess, params):
+    beta, sigma, labor, A, alpha, delta, SS_tol = params
+
+    K = np.array([bvec_guess.sum()])
+    L = np.array([labor.sum()])
+
+
+    r = alpha * A * np.power((L/K), (1-alpha)) - delta
+
+    w = (1-alpha) * A * (np.power((K/L), alpha))
+
+    earnings = w * labor
+
+    savings_tp1 = np.array([bvec_guess[1], bvec_guess[2],0])
+
+    c = (1+r) +bvec_guess - savings_tp1
+
+    euler_err = np.zeros([3])
+
+    uprimes = crra(sigma, c)[1]
+
+    for i in range(0, len(bvec_guess)-1):
+        euler_err[i] = beta * (1+r) * uprimes[i+1] - uprimes[i]
+
+    return(euler_err)
+
+
+def get_SS(params, bvec_guess, SS_graphs = True):
+
+    start_time = time.clock()
+
+    n_periods, sigma, A, alpha, delta, beta = params
+
+    properties = feasible(params, bvec_guess)[-1]
+
+    labor = properties['labor']
+
+    ee_params = (beta, sigma, labor, A, alpha, delta, SS_tol)
+
+    root_params = [bvec_guess, ee_params]
+
+    Euler_root = opt.root(euler_errors, bvec_guess, args = root_params)
+
+get_SS(f_params, bvec_guess)
