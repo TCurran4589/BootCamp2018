@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+import time
+import scipy.optimize as opt
 
 #------------------------------------------------------------------------------#
 #2.25
@@ -38,7 +40,11 @@ def production(A, capital, alpha, labor)      :
 
 def crra(sigma, c)                            :
     u = (np.power(c, (1-sigma)) - 1 )/ 1-sigma
-    return(u)
+
+    u_prime = np.power(c, (-1*sigma))
+
+    u_dbprime = -sigma * np.power(x, (-sigma - 1))
+    return(u, u_prime, u_dbprime)
 
 #------------------------------------------------------------------------------#
 
@@ -162,6 +168,7 @@ alpha = .35
 delta = .6415
 beta = .442
 n_periods = 3
+laborSupply = labor_supply(n_periods)
 
 f_params = (n_periods, sigma, A, alpha, delta, beta)
 
@@ -199,7 +206,7 @@ print("We can see here that all constraints are met")
 '''
 1.b
 Which, if any, of the constraints is violated if you choose an initial guess
-for steady-state savings of bvec guess = np.array([0.06, -0.001])?
+for steady-state savings of bvec guess = np.array([0.1, 0.1])?
 '''
 
 bvec_guess = np.array([0.0,0.1,0.1])
@@ -210,67 +217,5 @@ print("K constraing: {}".format(k_cnstr3))
 print("B constraint: {}".format(b_cnstr3))
 print("C constraint: {}".format(c_cnstr3))
 print("No constraints are violated")
-#------------------------------------------------------------------------------#
-'''
-2.2
 
-'''
-import time
-def get_SS(params, bvec_guess, SS_graphs):
-
-    '''
-
-    EulErr_ss: length-2 vector of the two Euler errors from the resulting
-               steady-state solution given in difference form
-               β(1 + r ̄)u′(c ̄s+1) − u′(c ̄s)
-
-    RCerr_ss:  is a resource constraint error which should be close to zero.
-               It is given by Y ̄ − C ̄ − δK ̄ .
-
-
-
-    '''
-
-    n_periods, beta, sigma, l, A, alpha, delta, SS_tol = params
-    #f_params = (n_periods, sigma, A, alpha, delta, beta)
-    f_params =
-
-    feasbility = feasible(f_params, bvec_guess)
-
-    b_ss = feasbility['savings'].mean()
-    c_ss = feasability['consumption'].mean()
-    w_ss = feasbility['wages'].mean()
-    r_ss = feasbility['interest'].mean()
-    k_ss = feasbility['capital']
-
-
-
-
-    start_time = time.clock()
-
-    ss_time = time.clock() - start_time
-
-    ss_output= {
-        'b_ss'      : b_ss,
-        'c_ss'      : c_ss,
-        'w_ss'      : w_ss,
-        'r_ss'      : r_ss,
-        'k_ss'      : k_ss,
-        'y_ss'      : y_ss,
-        'c_ss'      : c_ss,
-        'EulErr_ss' : EulErr_ss,
-        'RCerr_ss'  : RCerr_ss,
-        'ss_time'   : ss_time
-
-    }
-
-    return(ss_output)
-
-
-bvec_guess = np.array([0,1.0,1.2])
-SS_graphs = True
-params = ((n_periods, beta, sigma, l, A, alpha, delta, SS_tol))
-
-z,y,x,feasbility = feasible(f_params, bvec_guess)
-feasbility.keys()
-feasbility['captial']
+properties1
