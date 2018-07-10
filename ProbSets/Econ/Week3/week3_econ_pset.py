@@ -224,12 +224,13 @@ print("No constraints are violated")
 #
 ################################################################################
 
-def euler_errors(bvec_gess, params):
-    beta, sigma, labor, A, alpha, delta, SS_tol = params
+def euler_errors(bvec_gess, *args):
+    beta, sigma, labor, A, alpha, delta, SS_tol = args
 
-    K = np.array([bvec_guess.sum()])
-    L = np.array([labor.sum()])
+    labor = np.array([1, 1, .2])
 
+    K = bvec_guess.sum()
+    L = labor.sum()
 
     r = alpha * A * np.power((L/K), (1-alpha)) - delta
 
@@ -237,11 +238,11 @@ def euler_errors(bvec_gess, params):
 
     earnings = w * labor
 
-    savings_tp1 = np.array([bvec_guess[1], bvec_guess[2],0])
+    savings_tp1 = np.array([bvec_guess[1], bvec_guess[2], 0])
 
-    c = (1+r) +bvec_guess - savings_tp1
+    c = (w * labor) + ((1 + r) * bvec_guess) - savings_tp1
 
-    euler_err = np.zeros([3])
+    euler_err = np.zeros([2])
 
     uprimes = crra(sigma, c)[1]
 
@@ -250,21 +251,10 @@ def euler_errors(bvec_gess, params):
 
     return(euler_err)
 
+ee_params = (beta, sigma, laborSupply, A, alpha, delta, SS_tol)
 
-def get_SS(params, bvec_guess, SS_graphs = True):
+bvec_guess = np.array([0,.1, .1])
 
-    start_time = time.clock()
+euler_errors(bvec_guess,beta, sigma, laborSupply, A, alpha, delta, SS_tol )
 
-    n_periods, sigma, A, alpha, delta, beta = params
-
-    properties = feasible(params, bvec_guess)[-1]
-
-    labor = properties['labor']
-
-    ee_params = (beta, sigma, labor, A, alpha, delta, SS_tol)
-
-    root_params = [bvec_guess, ee_params]
-
-    Euler_root = opt.root(euler_errors, bvec_guess, args = root_params)
-
-get_SS(f_params, bvec_guess)
+opt.root(euler_errors, bvec_guess[1:], args = ee_params)
